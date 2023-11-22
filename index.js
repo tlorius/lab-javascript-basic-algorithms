@@ -47,12 +47,22 @@ if (longText !== "") {
     wordCount = 1;
 }
 for (let h = 0; h < longText.length; h += 1) {
-    let checkForEt = (longText[h] + longText[h+1] + longText[h+2] + longText[h+3]).toLowerCase();//print checkforet before submitting to check
+    let checkForEt = (longText[h-1] + longText[h] + longText[h+1] + longText[h+2]).toLowerCase();
     if (longText[h] === " "){
         wordCount += 1;
     }
-    if (checkForEt === " et " || checkForEt === " et." || checkForEt === " et,"){
-        etCount += 1;
+    switch(checkForEt){
+        case " et ":
+        case " et.":
+        case " et,":
+        case "undefinedet ":
+        case "undefinedet,":
+        case "undefinedet.":
+        case " etundefined":
+            etCount +=1;
+            break;
+        default:
+            break;
     }
 }
 console.log(`This string contains ${wordCount} words.`);
